@@ -60,9 +60,9 @@ class AboutMethods(Koan):
         return args
 
     def test_calling_with_variable_arguments(self):
-        self.assertEqual(__, self.method_with_var_args())
+        self.assertEqual((), self.method_with_var_args())
         self.assertEqual(('one',), self.method_with_var_args('one'))
-        self.assertEqual(__, self.method_with_var_args('one', 'two'))
+        self.assertEqual(('one', 'two'), self.method_with_var_args('one', 'two'))
 
     # ------------------------------------------------------------------
 
@@ -73,13 +73,13 @@ class AboutMethods(Koan):
         def function_with_the_same_name(a, b):
             return a * b
 
-        self.assertEqual(__, function_with_the_same_name(3,4))
+        self.assertEqual(12, function_with_the_same_name(3,4))
 
     def test_calling_methods_in_same_class_with_explicit_receiver(self):
         def function_with_the_same_name(a, b):
             return a * b
 
-        self.assertEqual(__, self.function_with_the_same_name(3,4))
+        self.assertEqual(7, self.function_with_the_same_name(3,4))
 
     # ------------------------------------------------------------------
 
@@ -92,10 +92,10 @@ class AboutMethods(Koan):
         return 42
 
     def test_that_old_methods_are_hidden_by_redefinitions(self):
-        self.assertEqual(__, self.another_method_with_the_same_name())
+        self.assertEqual(42, self.another_method_with_the_same_name())
 
     def test_that_overlapped_method_is_still_there(self):
-        self.assertEqual(__, self.link_to_overlapped_method())
+        self.assertEqual(10, self.link_to_overlapped_method())
 
     # ------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ class AboutMethods(Koan):
         pass
 
     def test_methods_that_do_nothing_need_to_use_pass_as_a_filler(self):
-        self.assertEqual(__, self.empty_method())
+        self.assertEqual(None, self.empty_method())
 
     def test_pass_does_nothing_at_all(self):
         "You"
